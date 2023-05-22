@@ -1,0 +1,54 @@
+GET http://localhost:3000/project
+Accept: application/json
+
+GET http://localhost:3000/project/1
+Accept: application/json
+
+GET http://localhost:3000/project/1/cron
+Accept: application/json
+
+GET http://localhost:3000/project/1/push
+Accept: application/json
+
+###
+
+POST http://localhost:3000/project/1/push
+Accept: application/json
+Content-Type: application/json
+
+###"project_keys": ["step", "mood"],
+{
+  "id": 1,
+  "user_id": 1,
+  "user_record": { "step": 5, "mood": "45" },
+  "project_id": 1,
+  "resource_id": 50,
+  "completed": false,
+  "answers": [
+    { "question_id": 1, "answer": 10 },
+    { "question_id": 1, "answer": 10 },
+    { "question_id": 3, "answer": 10 },
+    { "question_id": 5, "answer": 5 }
+  ]
+}
+
+POST http://localhost:3000/project/1/push
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1,
+  "user_id": 1,
+  "user_record": { "step": 6, "mood": "45" },
+  "project_id": 1,
+  "resource_id": 65,
+  "completed": false,
+  "answers": [
+    { "question_id": 1, "answer": 10 },
+    { "question_id": 2, "answer": 10 },
+    { "question_id": 2, "answer": 10 },
+    { "question_id": 1, "answer": 10 },
+    { "question_id": 3, "answer": 10 },
+    { "question_id": 5, "answer": 5 }
+  ]
+}

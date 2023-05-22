@@ -1,0 +1,4 @@
+/node_modules
+/dist
+/scripts/[0-9]*
+package-lock.json
