@@ -30,13 +30,11 @@ export async function postProjectCron(req: Request, res: Response) {
 }
 
 export async function postProjectPush(req: Request, res: Response) {
-  /* Pre */
-  const project_id: string = req.params.id
-
-  let projectScript = getPushProjectScript(project_id)
-  if (!projectScript) {
-    return res.status(404).json({ error: `Push script for project ${project_id} not found` })
+  /* Validation */
+  if (isNaN(parseInt(req.params.id))) {
+    return res.status(400).json({ error: 'Bad request' })
   }
+  const project_id: number = parseInt(req.params.id)
 
   if (
     req.body.id           === undefined ||
@@ -51,13 +49,13 @@ export async function postProjectPush(req: Request, res: Response) {
     return res.status(400).json({ error: 'Bad request' })
   }
 
-  // let class_user = await import('../../providers/models').then((m) => m)
-  // let user = postPaperToUser(req.body)
-  
-  /* fin Pre */
+  let projectScript = getPushProjectScript(project_id)
+  if (!projectScript) {
+    return res.status(404).json({ error: `Push script for project ${project_id} not found` })
+  }
+  /* fin Validation */
 
   let user: User = Function(
-    // class_user.User.toString()
     await import('../../providers/models').then((m) => m.User.toString())
     + `const user = new User(${JSON.stringify(req.body)});`
     + projectScript
@@ -68,10 +66,6 @@ export async function postProjectPush(req: Request, res: Response) {
   let paper = userToPostPaper(user)
   return res.json({ paper, actions: user.actions })
 }
-
-// function postPaperToUser(paper: PostPaper): User {
-//   return new User(paper)
-// }
 
 function userToPostPaper(user: User): PostPaper {
   return {
