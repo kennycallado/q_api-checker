@@ -1,3 +1,11 @@
+export type User = {
+  readonly id: number;
+  readonly record: Record<string, number>[];
+  readonly answers: Answer[];
+  readonly paper: Paper;
+  readonly actions: Action[];
+}
+
 export type Answer = {
   readonly question_id: number;
   readonly answer: string;

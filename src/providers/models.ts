@@ -1,22 +1,23 @@
 import { Action, Answer, Paper, PostPaper} from "./types";
+import { IUser } from "./interfaces";
 
 // Clase más por legibilidad que por funcionalidad
 // para therapist es más fácil entender que se hacer
 // con un User que con un PostPaper
-export class User {
-  actions: Action[] = [];
-
+export class User implements IUser {
+  readonly id;
+  readonly record;
+  readonly answers: Answer[];
+  readonly actions: Action[];
+  readonly paper: Paper;
   // project_keys; // needed ??
-  id;
-  record;
-  answers: Answer[];
-  paper: Paper;
 
   constructor(paper: PostPaper) {
     // this.project_keys = paper.project_keys;
     this.id = paper.user_id;
     this.record = paper.user_record;
     this.answers = paper.answers;
+    this.actions = [];
     this.paper = {
       id: paper.id,
       user_id: paper.user_id,
