@@ -28,8 +28,8 @@ export class User implements IUser {
   }
 
   add_resource(...resource_ids: number[]) {
-    if (resource_ids.length === 0) {
-      return
+    if (typeof resource_ids[0] !== "number") {
+      resource_ids = resource_ids[0];
     }
 
     this.actions.push({ action: "add_resource", params: resource_ids })
