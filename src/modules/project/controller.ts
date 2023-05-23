@@ -64,7 +64,8 @@ export async function postProjectPush(req: Request, res: Response) {
 
   /* Post */
   let paper = userToPostPaper(user)
-  return res.json({ paper, actions: user.actions })
+
+  return res.json(Object.assign(paper, { actions: user.actions }))
 }
 
 function userToPostPaper(user: User): PostPaper {
