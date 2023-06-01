@@ -13,7 +13,7 @@ ENV PORT=3000
 WORKDIR /app
 # COPY --from=build /app/package.json /app/package.json
 # COPY --from=build /app/dist /app/dist
-COPY ./package.json /app/package.json
+# COPY ./package.json /app/package.json
 COPY ./dist /app/dist
 COPY ./scripts /app/scripts
 
