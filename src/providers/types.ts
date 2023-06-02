@@ -1,12 +1,13 @@
 export type User = {
   readonly id: number;
   readonly record: Record<string, number>[];
-  readonly answers: Answer[];
+  // readonly record: Record<string, string>[];
+  readonly answers: PubNewAnswer[];
   readonly paper: Paper;
   readonly actions: Action[];
 }
 
-export type Answer = {
+export type PubNewAnswer = {
   readonly question_id: number;
   readonly answer: string;
 }
@@ -19,15 +20,15 @@ export type Paper = {
   completed: boolean;
 }
 
-export type PostPaper = {
+export type PubPaperPush = {
   readonly id: number;
-  readonly project_id: number;
-  // readonly project_keys: string[];
   readonly user_id: number;
   readonly user_record: Record<string, number>[];
+  // readonly user_record: Record<string, string>[];
+  readonly project_id: number;
   readonly resource_id: number;
   readonly completed: boolean;
-  readonly answers: Answer[];
+  readonly answers: PubNewAnswer[];
 }
 
 export type Action = {
