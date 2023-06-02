@@ -1,18 +1,13 @@
 import { Router } from 'express'
 
-// import { getProject, getProjectCron, getProjectPush, getProjects, postProjectCron, postProjectPush } from './modules/project/controller'
-import { /*postProjectCron,*/ postProjectPush } from './modules/project/controller'
-
+import { postProjectPush, postProjectCron } from './modules/project/controller'
 
 const router: Router = Router()
 
-// router.get('/project', getProjects)
-// router.get('/project/:id', getProject)
+router.get('/health', (_req, res) => { res.status(200).send('OK') })
+router.options('/project/*', (_req, res) => { res.status(200).send() })
 
-// router.get('/project/:id/cron', getProjectCron)
-// router.get('/project/:id/push', getProjectPush)
-
-// router.post('/project/:id/cron', postProjectCron)
-router.post('/project/:id/push', postProjectPush)
+router.post('/project/:project_id/cron/:cron_name', postProjectCron)
+router.post('/project/:project_id/push', postProjectPush)
 
 export default router
