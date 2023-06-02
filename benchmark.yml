@@ -1,0 +1,67 @@
+---
+# https://github.com/fcsonline/drill
+# drill --benchmark benchmark.yml --stats
+# also see
+# https://varnish-cache.org/intro/index.html#intro
+#
+# ``` bash
+# export REFRESH=$(curl -sS -D - http://localhost:8000/auth/bypass/1 -o /dev/null | grep 'set-cookie: .*' | sed -n -e 's/^.*: //p')
+# export TOKEN=$(curl http://localhost:8003/auth/bypass/1/ | jq .access_token | tr -d '\"')
+# drill --benchmark benchmark.yml --stats
+# ```
+#
+# Genera reporte
+# drill --benchmark benchmark.yml --report result
+# compara reporte con límite 1ms
+# drill --benchmark benchmark.yml --compare result --threshold 1
+
+concurrency: 4
+base: 'http://localhost:3000'
+iterations: 1000
+
+plan:
+  # - name: Include comments
+  #   include: comments.yml
+  
+  # - name: Waiting some seconds
+  #   delay:
+  #     seconds: 1
+
+  # - name: Assign access_token
+  #   assign:
+  #     key: TOKEN
+  #     value: ""
+  
+  # - name: Exec external commands
+  #   exec:
+  #     command: "curl http://localhost:8003/auth/bypass/1/ | jq .access_token | tr -d '\"'"
+  #   assign: TOKEN
+  #   tags: [token]
+
+  - name: Heath checker
+    request:
+      url: '/health'
+      headers:
+        Accept: application/json
+    tags: [ health ]
+
+  - name: Post Show Project
+    request:
+      method: 'POST'
+      url: '/project/1/push'
+      headers:
+        Accept: application/json
+        Content-Type: application/json
+      body: '{ "id": 1, "user_id": 1, "user_record": { "step": 5, "mood": 45 }, "project_id": 1, "resource_id": 50, "completed": false, "answers": [ { "question_id": 1, "answer": "10" }, { "question_id": 2, "answer": "10" }, { "question_id": 3, "answer": "10" }, { "question_id": 5, "answer": "5" } ] }'
+    tags: [ push-paper ]
+
+  - name: Post Show Project cron
+    request:
+      method: 'POST'
+      url: '/project/1/cron/steps'
+      headers:
+        Accept: application/json
+        Content-Type: application/json
+      body: '[ { "id": 0, "user_id": 1, "user_record": {}, "project_id": 1, "resource_id": 0, "completed": false, "answers": [ ] }, { "id": 1, "user_id": 1, "user_record": { "step": 5, "mood": 45 }, "project_id": 1, "resource_id": 50, "completed": false, "answers": [ { "question_id": 1, "answer": "10" }, { "question_id": 2, "answer": "10" }, { "question_id": 3, "answer": "10" }, { "question_id": 5, "answer": "5" } ] } ]'
+    tags: [ cron-steps ]
+---

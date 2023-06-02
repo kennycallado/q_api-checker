@@ -12,6 +12,70 @@ Accept: application/json
 
 ###
 
+POST http://localhost:3000/project/1/cron/steps
+Accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "id": 0,
+    "user_id": 1,
+    "user_record": {},
+    "project_id": 1,
+    "resource_id": 0,
+    "completed": false,
+    "answers": [ ]
+  }, {
+    "id": 1,
+    "user_id": 1,
+    "user_record": { "step": 4, "mood": 45, "strike": 1 },
+    "project_id": 1,
+    "resource_id": 41,
+    "completed": false,
+    "answers": [
+      { "question_id": 1, "answer": 10 },
+      { "question_id": 2, "answer": 10 },
+      { "question_id": 3, "answer": 10 },
+      { "question_id": 5, "answer": 5 }
+    ]
+  }
+]
+
+POST http://localhost:3000/project/1/cron/steps
+Accept: application/json
+Content-Type: application/json
+
+###"project_keys": ["step", "mood"],
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "user_record": { "step": 4, "mood": 45, "strike": 1 },
+    "project_id": 1,
+    "resource_id": 41,
+    "completed": false,
+    "answers": [
+      { "question_id": 1, "answer": 10 },
+      { "question_id": 2, "answer": 10 },
+      { "question_id": 3, "answer": 10 },
+      { "question_id": 5, "answer": 5 }
+    ]
+  }, {
+    "id": 2,
+    "user_id": 2,
+    "user_record": { "step": 4, "mood": 45 },
+    "project_id": 1,
+    "resource_id": 41,
+    "completed": false,
+    "answers": [
+      { "question_id": 1, "answer": 8 },
+      { "question_id": 2, "answer": 9 },
+      { "question_id": 3, "answer": 7 },
+      { "question_id": 5, "answer": 5 }
+    ]
+  }
+]
+
 POST http://localhost:3000/project/1/push
 Accept: application/json
 Content-Type: application/json
@@ -20,13 +84,13 @@ Content-Type: application/json
 {
   "id": 1,
   "user_id": 1,
-  "user_record": { "step": 4, "mood": "45" },
+  "user_record": { "step": 4, "mood": 45, "strike": 1 },
   "project_id": 1,
   "resource_id": 41,
   "completed": false,
   "answers": [
     { "question_id": 1, "answer": 10 },
-    { "question_id": 1, "answer": 10 },
+    { "question_id": 2, "answer": 10 },
     { "question_id": 3, "answer": 10 },
     { "question_id": 5, "answer": 5 }
   ]
@@ -40,13 +104,33 @@ Content-Type: application/json
 {
   "id": 1,
   "user_id": 1,
-  "user_record": { "step": 5, "mood": "45" },
+  "user_record": { "step": 4, "mood": 45 },
+  "project_id": 1,
+  "resource_id": 42,
+  "completed": false,
+  "answers": [
+    { "question_id": 1, "answer": 10 },
+    { "question_id": 2, "answer": 10 },
+    { "question_id": 3, "answer": 10 },
+    { "question_id": 5, "answer": 5 }
+  ]
+}
+
+POST http://localhost:3000/project/1/push
+Accept: application/json
+Content-Type: application/json
+
+###"project_keys": ["step", "mood"],
+{
+  "id": 1,
+  "user_id": 1,
+  "user_record": { "step": 5, "mood": 45 },
   "project_id": 1,
   "resource_id": 50,
   "completed": false,
   "answers": [
     { "question_id": 1, "answer": 10 },
-    { "question_id": 1, "answer": 10 },
+    { "question_id": 2, "answer": 10 },
     { "question_id": 3, "answer": 10 },
     { "question_id": 5, "answer": 5 }
   ]
@@ -59,16 +143,16 @@ Content-Type: application/json
 {
   "id": 1,
   "user_id": 1,
-  "user_record": { "step": 6, "mood": "45" },
+  "user_record": { "step": 6, "mood": 45 },
   "project_id": 1,
   "resource_id": 65,
   "completed": false,
   "answers": [
     { "question_id": 1, "answer": 10 },
     { "question_id": 2, "answer": 10 },
-    { "question_id": 2, "answer": 10 },
-    { "question_id": 1, "answer": 10 },
     { "question_id": 3, "answer": 10 },
-    { "question_id": 5, "answer": 5 }
+    { "question_id": 4, "answer": 10 },
+    { "question_id": 5, "answer": 10 },
+    { "question_id": 6, "answer": 5 }
   ]
 }
