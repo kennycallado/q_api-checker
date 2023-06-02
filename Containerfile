@@ -18,4 +18,4 @@ COPY ./dist /app/dist
 COPY ./scripts /app/scripts
 
 EXPOSE 3000
-CMD ["node", "/app/dist/server.js"]
+CMD ["node", "dist/server.js"]
