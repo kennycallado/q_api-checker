@@ -1,6 +1,6 @@
 {
   "name": "q-api-checker",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "dev": "nodemon",
     "build": "npx esbuild src/server.ts --bundle --platform=node --target=node18 --minify --outdir=dist/ && sed -i 's/class{/class User{/g' dist/server.js",
