@@ -3,7 +3,7 @@
   "version": "0.1.5",
   "scripts": {
     "dev": "nodemon",
-    "build": "npx esbuild src/main.ts --bundle --platform=node --target=node18 --minify --outdir=dist/ && sed -i 's/class{/class User{/g' dist/server.js",
+    "build": "npx esbuild src/app/server.ts --bundle --platform=node --target=node18 --minify --outdir=dist/ && sed -i 's/class{/class User{/g' dist/server.js",
     "start": "node ./dist/server.js"
   },
   "nodemonConfig": {
