@@ -1,18 +1,8 @@
-GET http://localhost:3000/project
+
+GET http://localhost:3000/health
 Accept: application/json
 
-GET http://localhost:3000/project/1
-Accept: application/json
-
-GET http://localhost:3000/project/1/cron
-Accept: application/json
-
-GET http://localhost:3000/project/1/push
-Accept: application/json
-
-###
-
-POST http://localhost:3000/project/1/cron/steps
+POST http://localhost:3000/checker/steps/project/1
 Accept: application/json
 Content-Type: application/json
 
@@ -27,11 +17,11 @@ Content-Type: application/json
     "answers": [ ]
   }, {
     "id": 1,
-    "user_id": 1,
+    "user_id": 2,
     "user_record": { "step": 4, "mood": 45, "strike": 1 },
     "project_id": 1,
     "resource_id": 41,
-    "completed": false,
+    "completed": true,
     "answers": [
       { "question_id": 1, "answer": 10 },
       { "question_id": 2, "answer": 10 },
@@ -41,11 +31,10 @@ Content-Type: application/json
   }
 ]
 
-POST http://localhost:3000/project/1/cron/steps
+POST http://localhost:3000/checker/steps/project/1
 Accept: application/json
 Content-Type: application/json
 
-###"project_keys": ["step", "mood"],
 [
   {
     "id": 1,
@@ -76,11 +65,10 @@ Content-Type: application/json
   }
 ]
 
-POST http://localhost:3000/project/1/push
+POST http://localhost:3000/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
-###"project_keys": ["step", "mood"],
 {
   "id": 1,
   "user_id": 1,
@@ -96,11 +84,10 @@ Content-Type: application/json
   ]
 }
 
-POST http://localhost:3000/project/1/push
+POST http://localhost:3000/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
-###"project_keys": ["step", "mood"],
 {
   "id": 1,
   "user_id": 1,
@@ -116,11 +103,10 @@ Content-Type: application/json
   ]
 }
 
-POST http://localhost:3000/project/1/push
+POST http://localhost:3000/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
-###"project_keys": ["step", "mood"],
 {
   "id": 1,
   "user_id": 1,
@@ -136,7 +122,7 @@ Content-Type: application/json
   ]
 }
 
-POST http://localhost:3000/project/1/push
+POST http://localhost:3000/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
