@@ -1,4 +1,6 @@
 /node_modules
 /dist
-/scripts/[0-9]*
+SCRIPTS/[0-9]*
+SCRIPTS/**/*.js
+!/SCRIPTS/example.js
 package-lock.json
