@@ -1,30 +1,10 @@
 import { Request, Response } from 'express'
 
-import { getCronProjectScript, getPushProjectScript } from '../../providers/services/scripts'
-
 import { User } from '../../providers/models'
+import { getCronProjectScript, getPushProjectScript } from '../../providers/services/scripts'
 import { PubPaperPush } from '../../providers/types'
 
-// export async function getProjects(_req: Request, res: Response) {
-//   res.json({ message: 'index' })
-// }
-
-// export async function getProject(req: Request, res: Response) {
-//   const id: string = req.params.id
-//   res.json({ message: `show project, ${id}!` })
-// }
-
-// export async function getProjectCron(req: Request, res: Response) {
-//   const id: string = req.params.id
-//   res.json({ message: `show cron project, ${id}!` })
-// }
-
-// export async function getProjectPush(req: Request, res: Response) {
-//   const id: string = req.params.id
-//   res.json({ message: `show push project, ${id}!` })
-// }
-
-export async function postProjectCron(req: Request, res: Response): Promise<Response> {
+export async function checkerCron(req: Request, res: Response): Promise<Response> {
   /* Validation */
   if (isNaN(parseInt(req.params.project_id))) {
     return res.status(400).json({ error: 'Bad request' })
@@ -32,12 +12,10 @@ export async function postProjectCron(req: Request, res: Response): Promise<Resp
   const project_id: number = parseInt(req.params.project_id)
   const cron_name: string = req.params.cron_name
 
-  // Validate array
   if (!Array.isArray(req.body)) {
     return res.status(400).json({ error: 'Bad request' })
   }
 
-  // Validate array items
   for (let i = 0; i < req.body.length; i++) {
     if (
       req.body[i].id           === undefined ||
@@ -59,6 +37,7 @@ export async function postProjectCron(req: Request, res: Response): Promise<Resp
   /* fin Validation */
 
   let papers: any = []
+
   for (let i = 0; i < req.body.length; i++) {
     let user: User = Function(
       await import('../../providers/models').then((m) => m.User.toString())
@@ -69,15 +48,14 @@ export async function postProjectCron(req: Request, res: Response): Promise<Resp
         + `main(); return user;`
 
     )()
-    let paper = userToPaperPush(user)
-    papers.push(Object.assign(paper , { actions: user.actions }))
+
+    papers.push(Object.assign(userToPaperPush(user) , { actions: user.actions }))
   }
 
-  /* Post */
   return res.json(papers)
 }
 
-export async function postProjectPush(req: Request, res: Response): Promise<Response> {
+export async function checkerPush(req: Request, res: Response): Promise<Response> {
   /* Validation */
   if (isNaN(parseInt(req.params.project_id))) {
     return res.status(400).json({ error: 'Bad request' })
@@ -109,13 +87,9 @@ export async function postProjectPush(req: Request, res: Response): Promise<Resp
       + projectScript
       + `};`
       + `main(); return user;`
-
   )()
 
-  /* Post */
-  let paper = userToPaperPush(user)
-
-  return res.json(Object.assign(paper, { actions: user.actions }))
+  return res.json(Object.assign(userToPaperPush(user), { actions: user.actions }))
 }
 
 function userToPaperPush(user: User): PubPaperPush {
