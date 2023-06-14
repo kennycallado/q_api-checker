@@ -17,7 +17,7 @@
 
 concurrency: 4
 base: 'http://localhost:3000'
-iterations: 1000
+iterations: 10
 
 plan:
   # - name: Include comments
@@ -48,7 +48,7 @@ plan:
   - name: Post Show Project
     request:
       method: 'POST'
-      url: '/project/1/push'
+      url: '/checker/push/project/1'
       headers:
         Accept: application/json
         Content-Type: application/json
@@ -58,7 +58,7 @@ plan:
   - name: Post Show Project cron
     request:
       method: 'POST'
-      url: '/project/1/cron/steps'
+      url: '/checker/steps/project/1'
       headers:
         Accept: application/json
         Content-Type: application/json

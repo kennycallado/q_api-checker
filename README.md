@@ -15,3 +15,4 @@ Al iniciar el proyecto en desarrollo es necesario crear una carpeta en `/scripts
 ## TODO
 
 - [ ] Something
+- [ ] Clean the unused way to upload
