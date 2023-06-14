@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { getCronProjectScript, getPushProjectScript } from '../../services/scripts'
+import { getCronProjectScript, getPushProjectScript } from '../../providers/services/scripts'
 
 import { User } from '../../providers/models'
 import { PubPaperPush } from '../../providers/types'
