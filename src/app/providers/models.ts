@@ -36,13 +36,13 @@ export class User implements IUser {
     return
   }
 
-  resource_complete(...resource_ids: number[]) {
+  resource_completed(...resource_ids: number[]) {
     if (resource_ids.length === 0 || resource_ids.find((id) => id === this.paper.resource_id)) {
       this.paper.completed = true
       return
     }
 
-    this.actions.push({ action: "resource_complete", params: resource_ids })
+    this.actions.push({ action: "resource_completed", params: resource_ids })
     return
   }
 }
