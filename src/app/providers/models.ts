@@ -37,9 +37,14 @@ export class User implements IUser {
   }
 
   resource_completed(...resource_ids: number[]) {
-    if (resource_ids.length === 0 || resource_ids.find((id) => id === this.paper.resource_id)) {
+    if (resource_ids.length === 0) {
       this.paper.completed = true
       return
+    }
+
+    if (resource_ids.find((id) => id === this.paper.resource_id)) {
+      resource_ids = resource_ids.filter((id) => id !== this.paper.resource_id)
+      this.paper.completed = true
     }
 
     this.actions.push({ action: "resource_completed", params: resource_ids })
