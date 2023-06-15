@@ -10,7 +10,6 @@ FROM node:alpine as runtime
 ENV NODE_ENV="production"
 ENV PORT=3000
 
-RUN mkdir -p /app/SCRIPTS
 COPY ./dist /app/dist
 
 # COPY ./SCRIPTS /app/SCRIPTS
