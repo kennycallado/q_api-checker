@@ -4,7 +4,7 @@ import { User } from '../../providers/models'
 import { getCronProjectScript, getPushProjectScript } from '../../providers/services/scripts'
 import { PubPaperPush } from '../../providers/types'
 
-export async function checkerCron(req: Request, res: Response): Promise<Response> {
+export async function checkerCron(req: Request, res: Response): Promise<Response<JSON>> {
   /* Validation */
   if (isNaN(parseInt(req.params.project_id))) {
     return res.status(400).json({ error: 'Bad request' })
