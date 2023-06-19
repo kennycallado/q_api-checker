@@ -39,12 +39,12 @@ const router: Router = Router()
 
 router.get('/health', (_req, res) => { res.status(200).json({ status: 'ok' }) })
 
-router.options('/checker/*', (_req, res) => { res.status(200).send() })
+router.options('/api/v1/checker/*', (_req, res) => { res.status(200).send() })
 // router.options('/script/*',  (_req, res) => { res.status(200).send() })
 
 // Project checker
-router.post('/checker/push/project/:project_id', checkerPush)
-router.post('/checker/:cron_name/project/:project_id', checkerCron)
+router.post('/api/v1/checker/push/project/:project_id', checkerPush)
+router.post('/api/v1/checker/:cron_name/project/:project_id', checkerCron)
 
 // Upload scripts
 // router.post('/script/:project_id/cron', upload.single('file'), (_req, res) => { console.log('ok'); res.status(200).send() })

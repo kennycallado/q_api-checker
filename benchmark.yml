@@ -38,7 +38,7 @@ plan:
   #   assign: TOKEN
   #   tags: [token]
 
-  - name: Heath checker
+  - name: Heath api/v1/checker
     request:
       url: '/health'
       headers:
@@ -48,7 +48,7 @@ plan:
   - name: Post Show Project
     request:
       method: 'POST'
-      url: '/checker/push/project/1'
+      url: '/api/v1/checker/push/project/1'
       headers:
         Accept: application/json
         Content-Type: application/json
@@ -58,7 +58,7 @@ plan:
   - name: Post Show Project cron
     request:
       method: 'POST'
-      url: '/checker/steps/project/1'
+      url: '/api/v1/checker/steps/project/1'
       headers:
         Accept: application/json
         Content-Type: application/json

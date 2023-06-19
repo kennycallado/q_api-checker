@@ -2,7 +2,7 @@
 GET http://localhost:3000/health
 Accept: application/json
 
-POST http://localhost:3000/checker/steps/project/1
+POST http://localhost:3000/api/v1/checker/steps/project/1
 Accept: application/json
 Content-Type: application/json
 
@@ -31,7 +31,7 @@ Content-Type: application/json
   }
 ]
 
-POST http://localhost:3000/checker/steps/project/1
+POST http://localhost:3000/api/v1/checker/steps/project/1
 Accept: application/json
 Content-Type: application/json
 
@@ -65,7 +65,7 @@ Content-Type: application/json
   }
 ]
 
-POST http://localhost:3000/checker/push/project/1
+POST http://localhost:3000/api/v1/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
@@ -85,7 +85,7 @@ Content-Type: application/json
   ]
 }
 
-POST http://localhost:3000/checker/push/project/1
+POST http://localhost:3000/api/v1/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
@@ -104,7 +104,7 @@ Content-Type: application/json
   ]
 }
 
-POST http://localhost:3000/checker/push/project/1
+POST http://localhost:3000/api/v1/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
@@ -123,7 +123,7 @@ Content-Type: application/json
   ]
 }
 
-POST http://localhost:3000/checker/push/project/1
+POST http://localhost:3000/api/v1/checker/push/project/1
 Accept: application/json
 Content-Type: application/json
 
