@@ -46,7 +46,6 @@ export async function checkerCron(req: Request, res: Response): Promise<Response
         + projectScript
         + `};`
         + `main(); return user;`
-
     )()
 
     papers.push(Object.assign(userToPaperPush(user) , { actions: user.actions }))
@@ -96,7 +95,7 @@ function userToPaperPush(user: User): PubPaperPush {
   return {
     id: user.paper.id,
     user_id: user.paper.user_id,
-    user_record: user.record,
+    user_record: Object.assign(user.record),
     project_id: user.paper.project_id,
     resource_id: user.paper.resource_id,
     completed: user.paper.completed,

@@ -1,7 +1,7 @@
 export type User = {
   readonly id: number;
-  readonly record: Record<string, number>[];
-  // readonly record: Record<string, string>[];
+  readonly record: Object;
+  // readonly record: Record<string, number>[];
   readonly answers: PubNewAnswer[];
   readonly paper: Paper;
   readonly actions: Action[];
@@ -23,8 +23,8 @@ export type Paper = {
 export type PubPaperPush = {
   readonly id: number;
   readonly user_id: number;
-  readonly user_record: Record<string, number>[];
-  // readonly user_record: Record<string, string>[];
+  readonly user_record: Object;
+  // readonly user_record: Record<string, number>[];
   readonly project_id: number;
   readonly resource_id: number;
   readonly completed: boolean;
