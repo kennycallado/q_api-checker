@@ -3,14 +3,14 @@ import { IUser } from "./interfaces"
 
 export class User implements IUser {
   readonly id
-  readonly record: Object
+  record: Record<string, number>[]
   readonly answers: PubNewAnswer[]
   readonly actions: Action[]
   readonly paper: Paper
 
   constructor(paper: PubPaperPush) {
     this.id = paper.user_id
-    this.record = paper.user_record ? paper.user_record : {};
+    this.record = paper.user_record ? paper.user_record : Object.create(null);
     // this.record = paper.user_record
     this.answers = paper.answers
     this.actions = []
