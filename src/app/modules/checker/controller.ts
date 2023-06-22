@@ -93,12 +93,12 @@ export async function checkerPush(req: Request, res: Response): Promise<Response
 
 function userToPaperPush(user: User): PubPaperPush {
   return {
-    id: user.paper.id,
-    user_id: user.paper.user_id,
-    user_record: user.record,
-    project_id: user.paper.project_id,
-    resource_id: user.paper.resource_id,
-    completed: user.paper.completed,
-    answers: user.answers,
+    id:           user.paper.id,
+    user_id:      user.paper.user_id,
+    user_record:  user.record,
+    project_id:   user.paper.project_id,
+    resource_id:  user.paper.resource_id,
+    completed:    user.paper.completed,
+    answers:      user.paper.answers,
   }
 }
