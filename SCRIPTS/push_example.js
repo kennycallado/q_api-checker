@@ -2,7 +2,7 @@ const resources_mood = [ 7, 8 ];
 
 function calculate_mood(answers, mood = 0) {
   for (let answer of answers) {
-    if (typeof answers === "string") continue;
+    if (typeof answer === "string") continue;
     mood += parseInt(answer.answer);
   }
 
@@ -19,7 +19,7 @@ switch (user.record.step) {
     user.add_resource(2); // genera un paper
 
     user.record.step = 2;
-    user.record.mood = calculate_mood(user.answers); // calculate_mood(answers)
+    user.record.mood = calculate_mood(user.paper.answers); // calculate_mood(answers)
     user.record.state = "lift-off"
     break;
 
@@ -31,7 +31,7 @@ switch (user.record.step) {
     user.add_resource(3);
 
     user.record.step = 3;
-    user.record.mood = calculate_mood(user.answers, user.record.mood);
+    user.record.mood = calculate_mood(user.paper.answers, user.record.mood);
     break;
 
   case 3:
@@ -42,7 +42,7 @@ switch (user.record.step) {
     user.add_resource(4, 5);
 
     user.record.step = 4;
-    user.record.mood = calculate_mood(user.answers, user.record.mood);
+    user.record.mood = calculate_mood(user.paper.answers, user.record.mood);
     user.record.state = "orbit";
     break;
 
@@ -54,7 +54,7 @@ switch (user.record.step) {
     // user.add_resource(6);
 
     // user.record.step = 5;
-    user.record.mood = calculate_mood(user.answers, user.record.mood);
+    user.record.mood = calculate_mood(user.paper.answers, user.record.mood);
     break;
 
   case 5:
@@ -65,7 +65,7 @@ switch (user.record.step) {
     user.add_resource(...resources_mood); 
     //
     user.record.step = 6;
-    user.record.mood = calculate_mood(user.answers, user.record.mood);
+    user.record.mood = calculate_mood(user.paper.answers, user.record.mood);
     break;
 
   // // case 6:
@@ -73,11 +73,11 @@ switch (user.record.step) {
   // //   // if (user.record.strike) delete user.record.strike;
   // //   
   // //   /*calculate mood*/
-  // //   let mood = calculate_mood(user.answers, user.record.mood);
+  // //   let mood = calculate_mood(user.paper.answers, user.record.mood);
   // //   user.record.mood = mood;
 
   // //   if (user.record.mood <= 50) {
-  // //     // Case that the users get a resource recursively
+  // //     // Case that the user get a resource recursively
   // //     // if (user.paper.resource_id === 61) { user.add_resource(62); user.resource_completed(); }
   // //     // if (user.paper.resource_id === 62) { user.add_resource(63); user.resource_completed(); }
   // //     // ...
