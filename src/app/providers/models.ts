@@ -21,6 +21,11 @@ export class User implements IUser {
     }
   }
 
+  toggle_active() {
+    this.actions.push({ action: "toggle_active", params: [] })
+    return
+  }
+
   send_message(message_id: number) {
     this.actions.push({ action: "send_message", params: [message_id] })
     return
